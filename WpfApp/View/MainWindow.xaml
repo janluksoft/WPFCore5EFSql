@@ -1,0 +1,138 @@
+﻿<Window x:Class="WpfApp.View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:WpfApp"
+        
+    Icon="/Resources/Image/31_database.png" 
+    mc:Ignorable="d"
+    Title="CRUD operations using the Entity Framework" 
+    Height="320" MinHeight="240"
+    Width="530" MinWidth="520"
+    WindowStartupLocation="CenterScreen"
+    Style = "{DynamicResource CustomWindowStyle}"
+    >
+    <!-- Above: invoke the main window style (CustomWindowStyle) -->
+
+                           <!-- Background of the window in the middle -->
+    <Grid Margin="1,1,1,3" Background="{DynamicResource KeyColorWindowBackground}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="22" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Label x:Name="labTypeOfServer" Content="Microsoft SQL Server" Foreground="DarkGreen" Margin="12,0,0,0"  FontSize="14"/>
+            <Label x:Name="labTyp" Content="WPF Window" Margin="8,0,10,0" FontSize="14" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <!-- TabControl -->
+            <TabControl x:Name="tabControl1" Margin="4">
+                <TabItem Header="DataBase">
+                    
+                    <!-- TAB DataBase -->
+                    <Grid Margin="1,1,1,3" Background="{DynamicResource KeyColorBackgroundBlue1}">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="80" />
+                        </Grid.RowDefinitions>
+
+
+                        <Grid Grid.Row="0">
+                            <DataGrid x:Name="cDataGrid1" Margin="2,2,2,2" />
+                        </Grid>
+
+                        <Grid Grid.Row="1" >
+
+                            <StackPanel Orientation="Vertical" Background="{DynamicResource KeyColorBackgroundBlue1}">
+
+                                <StackPanel x:Name="StReadTab" Orientation="Horizontal" Margin="2,0" Height="26" HorizontalAlignment="Left" >
+                                    <Button x:Name="buttReadTb" Margin="4,0,5,0" Height="24" Width="80" Click="buttReadTb_Click">
+                                        Read Table</Button>
+                                    <Label x:Name="labTable" Content="Table" Margin="1,5,8,0"/>
+                                    <Button x:Name="buttDeleteRow" Margin="40,0,5,0" Height="24" Width="116" Click="buttDeleteRow_Click">
+                                        Delete actual Row</Button>
+                                </StackPanel>
+                                
+                                <StackPanel x:Name="StDesc1" Orientation="Horizontal" Margin="2,0" Height="24" HorizontalAlignment="Left">
+                                    <Label Content="New row to DataBase" Foreground="Green" Margin="6,7,0,0"/>
+                                    <Label Content="Name             Surname            Age       City                   Height" Margin="20,7,0,0"/>
+                                </StackPanel>
+
+                                <StackPanel x:Name="StAddPr" Orientation="Horizontal" Margin="2,2" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Button x:Name="butAddPerson" Margin="4,0,5,0" Height="22" Width="80" Click="butAddPerson_Click">
+                                        Add Person</Button>
+                                    <TextBox x:Name="txtAName"  Text="Linford" Margin ="40,1,1,1" Width="80" Height="22"/>
+                                    <TextBox x:Name="txtASurname"  Text="Christie" Margin ="1,1" Width="85" Height="22"/>
+                                    <TextBox x:Name="txtAAge"  Text="31" Margin ="1,1" Width="40" Height="22"/>
+                                    <TextBox x:Name="txtACity"  Text="Stuttgart" Margin ="1,1" Width="85" Height="22"/>
+                                    <TextBox x:Name="txtAHeight"  Text="184" Margin ="1,1" Width="40" Height="22"/>
+
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+
+
+                </TabItem>
+                <TabItem Header="Proposal">
+                    <Canvas Margin="10">
+                        <Button x:Name="buttAddExamples" Margin="8,0,5,0" Height="24" Width="130" Click="buttAddExamples_Click">
+                            Add 8 examples rows</Button>
+                    </Canvas>
+                </TabItem>
+                <TabItem Header="Login" x:Name="tbItem3">
+                    <!-- <Canvas Margin="10" Background="Beige"> -->
+                    <StackPanel Orientation="Vertical" Background="{DynamicResource KeyColorBackgroundBlue1}">
+
+                        <StackPanel x:Name="StSchema" Orientation="Horizontal" Margin="2,10,1,1" 
+                                Height="24" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Label Content="Schema:"/>
+                            <TextBox x:Name="txtSchema"  Text="dbo" Margin ="1,1" Width="80" Height="22"/>
+                            <Label Content="TableName:" Margin="5,3,2,1"/>
+                            <TextBox x:Name="txtTableName"  Text="Sprinters" Margin ="1,1" Width="85" Height="22"/>
+                        </StackPanel>
+
+                        <StackPanel x:Name="StDataBase" Orientation="Horizontal" Margin="2,2" 
+                                Height="24" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Label Content="DataBase:"/>
+                            <TextBox x:Name="txtDataBase"  Text="dbMark" Margin ="1,1" Width="80" Height="22"/>
+                            <Label Content="User:"/>
+                            <TextBox x:Name="txtUser"  Text="sa" Margin ="1,1" Width="85" Height="22"/>
+                            <Label Content="Pass:"/>
+                            <PasswordBox x:Name="txtPass" Password="12345" Margin ="1,1" Width="85" Height="22"/>
+
+                        </StackPanel>
+                        
+                        <StackPanel x:Name="StComputer" Orientation="Horizontal" Margin="2,2" 
+                                Height="24" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Label Content="Computer:"/>
+                            <TextBox x:Name="txtComp"  Text="DESKTOP-B" Margin ="1,1" Width="80" Height="22"/>
+                            <Label Content="\"/>
+                            <TextBox x:Name="txtServer"  Text="SQLEXPRESS" Margin ="1,1" Width="85" Height="22"/>
+                        </StackPanel>
+
+                        <StackPanel x:Name="StConnect" Orientation="Horizontal" Margin="2,8" 
+                                Height="28" HorizontalAlignment="Left" >
+                            <Button x:Name="buttCheckConn" Margin="8,0,5,0" Height="24" Width="110" Click="buttCheckConn_Click">
+                                Check Connection</Button>
+                            <Label x:Name="labConnectionInfo" Content="Connection Unknown" Margin="1,5,8,0"/>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                </TabItem>
+
+            </TabControl>
+
+        </Grid>
+
+    </Grid>
+
+</Window>
